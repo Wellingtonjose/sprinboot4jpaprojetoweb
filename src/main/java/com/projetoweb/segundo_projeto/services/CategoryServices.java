@@ -15,6 +15,7 @@ public class CategoryServices {
 	public List<Category> findAll(){
 		return respository.findAll();	
 	} 
+
 	public Category findyById(Long id) {
 		Optional<Category> op = respository.findById(id);
 		return op.get();
