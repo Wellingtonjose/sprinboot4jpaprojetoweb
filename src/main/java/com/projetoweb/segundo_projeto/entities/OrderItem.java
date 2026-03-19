@@ -1,10 +1,9 @@
-package com.projetoweb.segundo_projeto.config;
+package com.projetoweb.segundo_projeto.entities;
 
 import java.io.Serializable;
 import java.util.Objects;
 
-import com.projetoweb.segundo_projeto.entities.Order;
-import com.projetoweb.segundo_projeto.entities.Product;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.projetoweb.segundo_projeto.entities.pk.OrderItempk;
 
 import jakarta.persistence.EmbeddedId;
@@ -16,7 +15,7 @@ import jakarta.persistence.Table;
 public class OrderItem implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@EmbeddedId
-	private OrderItempk id;
+	private OrderItempk id = new OrderItempk();
 	private Integer quantity;
 	private Double price;
 	public OrderItem() {
@@ -46,6 +45,7 @@ public class OrderItem implements Serializable{
 	public void setProduct(Product product) {
 		id.setProduct(product);
 	}
+	@JsonIgnore
 	public Order getOrder() {
 		return id.getOrder();
 	}
