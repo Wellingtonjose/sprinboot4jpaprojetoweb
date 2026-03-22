@@ -8,21 +8,39 @@ import org.springframework.stereotype.Service;
 
 import com.projetoweb.segundo_projeto.entities.User;
 import com.projetoweb.segundo_projeto.repositories.UserRepository;
+
 @Service
 public class UserServices {
-	@Autowired 	
+	@Autowired
 	private UserRepository repository;
-	public List<User> findAll(){
-		return repository.findAll();	
-	} 
+
+	public List<User> findAll() {
+		return repository.findAll();
+	}
+
 	public User findyById(Long id) {
 		Optional<User> op = repository.findById(id);
 		return op.get();
 	}
+
 	public User insert(User obj) {
 		return repository.save(obj);
 	}
+
 	public void delete(Long id) {
 		repository.deleteById(id);
+	}
+
+	public User update(Long id, User user) {
+		User entity = repository.getReferenceById(id);
+		updateData(entity, user);
+		return repository.save(entity);
+	}
+
+	private void updateData(User entity, User user) {
+		entity.setName(user.getName());
+		entity.setEmail(user.getEmail());
+		entity.setPhone(user.getPhone());
+
 	}
 }
