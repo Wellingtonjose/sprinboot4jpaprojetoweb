@@ -11,15 +11,18 @@ import com.projetoweb.segundo_projeto.repositories.UserRepository;
 @Service
 public class UserServices {
 	@Autowired 	
-	private UserRepository respository;
+	private UserRepository repository;
 	public List<User> findAll(){
-		return respository.findAll();	
+		return repository.findAll();	
 	} 
 	public User findyById(Long id) {
-		Optional<User> op = respository.findById(id);
+		Optional<User> op = repository.findById(id);
 		return op.get();
 	}
 	public User insert(User obj) {
-		return respository.save(obj);
+		return repository.save(obj);
+	}
+	public void delete(Long id) {
+		repository.deleteById(id);
 	}
 }
